@@ -2,8 +2,6 @@ import { useState, useMemo, useEffect } from 'react';
 import { Visualizer } from './components/Visualizer';
 import { ComparisonVisualizer } from './components/ComparisonVisualizer';
 import { Controls } from './components/Controls';
-import { CodePanel } from './components/CodePanel';
-import { DebugPanel } from './components/DebugPanel';
 import { Timeline } from './components/Timeline';
 import { BenchmarkPanel } from './components/BenchmarkPanel';
 import { algorithms } from './algorithms';
@@ -28,9 +26,7 @@ function App() {
   const [showInfo, setShowInfo] = useState(false);
   const [customInput, setCustomInput] = useState('');
   const [showCustomInput, setShowCustomInput] = useState(false);
-  const [showCode, setShowCode] = useState(false);
   const [barStyle, setBarStyle] = useState('gradient');
-  const [showDebug, setShowDebug] = useState(false);
   const [bookmarks, setBookmarks] = useState<number[]>([]);
   const [showBenchmark, setShowBenchmark] = useState(false);
 
@@ -180,14 +176,6 @@ function App() {
           e.preventDefault();
           handleToggleBookmark(currentStepIndex);
           break;
-        case 'd':
-          e.preventDefault();
-          setShowDebug(!showDebug);
-          break;
-        case 'c':
-          e.preventDefault();
-          setShowCode(!showCode);
-          break;
         case 'i':
           e.preventDefault();
           setShowInfo(!showInfo);
@@ -214,7 +202,7 @@ function App() {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [playbackState, play, pause, stepForward, stepBackward, reset, currentStepIndex, bookmarks, showDebug, showCode, showInfo, comparisonMode, lightMode]);
+  }, [playbackState, play, pause, stepForward, stepBackward, reset, currentStepIndex, bookmarks, showInfo, comparisonMode, lightMode]);
 
   // Sound effect
   useEffect(() => {
@@ -680,20 +668,6 @@ Total Steps: ${steps.length}`;
                 {showInfo ? '▼' : '▶'} Algorithm Info
               </button>
 
-              <button 
-                onClick={() => setShowCode(!showCode)} 
-                className="code-toggle-btn"
-              >
-                {showCode ? '▼' : '▶'} View Pseudocode
-              </button>
-
-              <button 
-                onClick={() => setShowDebug(!showDebug)} 
-                className="code-toggle-btn"
-              >
-                {showDebug ? '▼' : '▶'} Debug Panel
-              </button>
-
               {showInfo && algorithmInfo[selectedAlgorithm.name as keyof typeof algorithmInfo] && (
                 <div className="algo-info-card">
                   <p className="info-section">
@@ -715,23 +689,6 @@ Total Steps: ${steps.length}`;
                     {algorithmInfo[selectedAlgorithm.name as keyof typeof algorithmInfo].realWorld}
                   </p>
                 </div>
-              )}
-
-              {showCode && (
-                <CodePanel 
-                  algorithmName={selectedAlgorithm.name}
-                  isLightMode={lightMode}
-                />
-              )}
-
-              {showDebug && (
-                <DebugPanel
-                  currentStep={currentStep}
-                  currentStepIndex={currentStepIndex}
-                  totalSteps={steps.length}
-                  data={displayData}
-                  isLightMode={lightMode}
-                />
               )}
 
               {bookmarks.length > 0 && (
