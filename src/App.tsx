@@ -426,8 +426,7 @@ Total Steps: ${steps.length}`;
       </header>
 
       <main className={`main-content ${comparisonMode ? 'comparison-mode' : ''}`}>
-        <div className="content-grid">
-          <div className="config-panel glass-panel">
+        <div className="config-panel glass-panel">
           <div className="config-section">
             <label>
               <input
@@ -756,21 +755,21 @@ Total Steps: ${steps.length}`;
             )}
           </div>
         </div>
-        </div>
 
-        {!comparisonMode && (
-          <div className="timeline-wrapper">
-            <Timeline
-              currentStep={currentStepIndex}
-              totalSteps={steps.length}
-              bookmarks={bookmarks}
-              onSeek={handleSeek}
-              onToggleBookmark={handleToggleBookmark}
-            />
-          </div>
-        )}
+        <div className="right-content">
+          {!comparisonMode && (
+            <div className="timeline-wrapper">
+              <Timeline
+                currentStep={currentStepIndex}
+                totalSteps={steps.length}
+                bookmarks={bookmarks}
+                onSeek={handleSeek}
+                onToggleBookmark={handleToggleBookmark}
+              />
+            </div>
+          )}
 
-        <div className="visualizer-wrapper glass-panel">
+          <div className="visualizer-wrapper glass-panel">
           {!comparisonMode ? (
             <Visualizer
               data={displayData}
@@ -796,6 +795,7 @@ Total Steps: ${steps.length}`;
               ))}
             </div>
           )}
+        </div>
         </div>
       </main>
 

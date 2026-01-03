@@ -191,8 +191,8 @@
 
 /* Main Content Layout */
 .main-content {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 260px 1fr;
   gap: 0.75rem;
   flex: 1;
   margin-bottom: 0.75rem;
@@ -200,15 +200,16 @@
   overflow: hidden;
 }
 
-.main-content > .content-grid {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 0.75rem;
-  min-height: 0;
+.main-content.comparison-mode {
+  grid-template-columns: 240px 1fr;
 }
 
-.main-content.comparison-mode > .content-grid {
-  grid-template-columns: 240px 1fr;
+.right-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-height: 0;
+  overflow: hidden;
 }
 
 /* Config Panel */
@@ -754,7 +755,7 @@ input[type="checkbox"] {
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .main-content > .content-grid {
+  .main-content {
     grid-template-columns: 1fr;
   }
   
@@ -928,12 +929,16 @@ input[type="checkbox"] {
 /* Timeline */
 .timeline-wrapper {
   width: 100%;
-  padding: 0 0.75rem;
-  margin-bottom: 0.5rem;
-}
-
-.timeline-container {
-  background: rgba(17, 24, 39, 0.4);
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: transparent;
+  backdrop-filter: none;
+  border: none;
+  border-radius: 12px;
+  padding: 0gba(17, 24, 39, 0.4);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
