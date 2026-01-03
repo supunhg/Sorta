@@ -359,7 +359,7 @@ input[type="checkbox"] {
   padding: 1rem;
   font-size: 0.85rem;
   line-height: 1.6;
-  max-height: 600px;
+  max-height: none;
   overflow-y: auto;
 }
 
