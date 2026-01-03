@@ -34,6 +34,53 @@ function App() {
   const [bookmarks, setBookmarks] = useState<number[]>([]);
   const [showBenchmark, setShowBenchmark] = useState(false);
 
+  // Load configuration from URL on mount
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const configParam = params.get('config');
+    
+    if (configParam) {
+      try {
+        const decoded = JSON.parse(atob(configParam));
+        
+        // Load algorithm
+        if (decoded.algorithm) {
+          const algo = algorithms.find(a => a.name === decoded.algorithm);
+          if (algo) setSelectedAlgorithm(algo);
+        }
+        
+        // Load data
+        if (decoded.data && Array.isArray(decoded.data)) {
+          setData(decoded.data);
+          setDatasetSize(decoded.data.length);
+        }
+        
+        // Load speed
+        if (decoded.speed) {
+          setSpeed(decoded.speed);
+        }
+        
+        // Load theme
+        if (decoded.theme) {
+          setColorTheme(decoded.theme);
+        }
+        
+        // Load comparison mode
+        if (decoded.comparison && decoded.algorithms) {
+          setComparisonMode(true);
+          const algos = decoded.algorithms
+            .map((name: string) => algorithms.find(a => a.name === name))
+            .filter((a: typeof algorithms[0] | undefined): a is typeof algorithms[0] => a !== undefined);
+          if (algos.length > 0) {
+            setCompareAlgorithms(algos);
+          }
+        }
+      } catch (e) {
+        console.error('Failed to load configuration from URL:', e);
+      }
+    }
+  }, []);
+
   // Generate steps - in comparison mode, use the longest step sequence
   const steps = useMemo(() => {
     if (!comparisonMode) {
