@@ -426,7 +426,8 @@ Total Steps: ${steps.length}`;
       </header>
 
       <main className={`main-content ${comparisonMode ? 'comparison-mode' : ''}`}>
-        <div className="config-panel glass-panel">
+        <div className="content-grid">
+          <div className="config-panel glass-panel">
           <div className="config-section">
             <label>
               <input
@@ -754,6 +755,7 @@ Total Steps: ${steps.length}`;
               </div>
             )}
           </div>
+        </div>
         </div>
 
         {!comparisonMode && (
