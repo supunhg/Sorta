@@ -7,7 +7,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite)](https://vitejs.dev/)
 
-**[Live Demo](https://sorta-visualizer.vercel.app)** | **[GitHub](https://github.com/supunhg/Sorta)**
+**[Live Demo](https://sorta-nine.vercel.app)** | **[GitHub](https://github.com/supunhg/Sorta)**
 
 ---
 
