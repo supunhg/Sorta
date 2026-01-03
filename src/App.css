@@ -359,8 +359,8 @@ input[type="checkbox"] {
   padding: 1rem;
   font-size: 0.85rem;
   line-height: 1.6;
-  max-height: none;
-  overflow-y: auto;
+  min-height: 400px;
+  height: auto;
 }
 
 .info-section {
