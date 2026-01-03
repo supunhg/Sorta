@@ -360,7 +360,9 @@ input[type="checkbox"] {
   font-size: 0.85rem;
   line-height: 1.6;
   min-height: 400px;
+  max-height: 500px;
   height: auto;
+  overflow-y: auto;
 }
 
 .info-section {
